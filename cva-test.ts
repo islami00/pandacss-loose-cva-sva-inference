@@ -47,29 +47,8 @@ maxSerializationDepthExampleFixed({
   size: 'sm'
 });
 
-//  Case 2: Incorrect properties
-newCva({
-  variants: {
-    size: {
-      sm: {
-        // @ts-expect-error
-        thisIsNotAValidCSSProperty: 'hello'
-      },
-      md: {}
-    }
-  }
-});
-cva({
-  variants: {
-    size: {
-      sm: {
-        thisIsNotAValidCSSProperty: 'hello'
-      },
-      md: {}
-    }
-  }
-});
-//  Case 3: Type errors only occur at the cva call site, making it hard to debug
+
+//  Case 2: Type errors are reported at the variant property, making it hard to debug
 newCva({
   variants: {
     size: {
@@ -90,6 +69,29 @@ cva({
     size: {
       sm: {
         fontSize: 'a'
+      },
+      md: {}
+    }
+  }
+});
+
+//  Case 3: Incorrect properties
+newCva({
+  variants: {
+    size: {
+      sm: {
+        // @ts-expect-error
+        thisIsNotAValidCSSProperty: 'hello'
+      },
+      md: {}
+    }
+  }
+});
+cva({
+  variants: {
+    size: {
+      sm: {
+        thisIsNotAValidCSSProperty: 'hello'
       },
       md: {}
     }
