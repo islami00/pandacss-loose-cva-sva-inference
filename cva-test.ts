@@ -47,7 +47,6 @@ maxSerializationDepthExampleFixed({
   size: 'sm'
 });
 
-
 //  Case 2: Type errors are reported at the variant property, making it hard to debug
 newCva({
   variants: {
@@ -80,10 +79,11 @@ newCva({
   variants: {
     size: {
       sm: {
+        // The following condition does not exist
         // @ts-expect-error
-        thisIsNotAValidCSSProperty: 'hello'
+        '@/9xl': {}
       },
-      md: {}
+      md: {  }
     }
   }
 });
@@ -91,7 +91,7 @@ cva({
   variants: {
     size: {
       sm: {
-        thisIsNotAValidCSSProperty: 'hello'
+        '@/9xl': {}
       },
       md: {}
     }
