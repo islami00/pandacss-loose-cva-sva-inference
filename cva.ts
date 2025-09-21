@@ -1,5 +1,4 @@
 import { ForceIndexVariants, RecipeSelection, RecipeVariantMap } from './utils';
-import { css } from './styled-system/css';
 import {
   DistributiveOmit,
   Pretty,

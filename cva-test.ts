@@ -83,7 +83,7 @@ newCva({
         // @ts-expect-error
         '@/9xl': {}
       },
-      md: {  }
+      md: {}
     }
   }
 });
