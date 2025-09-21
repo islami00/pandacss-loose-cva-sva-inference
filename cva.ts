@@ -10,25 +10,10 @@ import {
 } from './styled-system/types';
 // Core
 export interface RecipeDefinition<T> {
-  /**
-   * The base styles of the recipe.
-   */
   base?: SystemStyleObject;
-  /**
-   * Whether the recipe is deprecated.
-   */
   deprecated?: boolean | string;
-  /**
-   * The multi-variant styles of the recipe.
-   */
-  variants?: ForceIndexVariants<T, SystemStyleObject>; // This is the main change.
-  /**
-   * The default variants of the recipe.
-   */
+  variants?: ForceIndexVariants<T, SystemStyleObject>; // This is the main change that limits inference.
   defaultVariants?: RecipeSelection<T>;
-  /**
-   * The styles to apply when a combination of variants is selected.
-   */
   compoundVariants?: Pretty<RecipeCompoundVariant<RecipeCompoundSelection<T>>>[];
 }
 // I removed this entirely to be consistent with sva. However, the "extends" works fine here. The only exception is that Making this `Record<any, Record<any,SystemStyleObject>> will cause inference to fail at RecipeCreatorFn and default to RecipeVariantRecord

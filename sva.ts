@@ -17,34 +17,12 @@ export interface SlotRecipeDefinition<
   // 2. variants is type-safe, and the other operations don't need the constraint
   T = unknown
 > {
-  /**
-   * An optional class name that can be used to target slots in the DOM.
-   */
   className?: string;
-  /**
-   * Whether the recipe is deprecated.
-   */
   deprecated?: boolean | string;
-  /**
-   * The parts/slots of the recipe.
-   */
   slots: S[] | Readonly<S[]>;
-  /**
-   * The base styles of the recipe.
-   */
   base?: SlotRecord<S, SystemStyleObject>;
-  /**
-   * The multi-variant styles of the recipe.
-   */
-  variants?: ForceIndexVariants<T, SlotRecord<S, SystemStyleObject>>; // Main Change is here.
-
-  /**
-   * The default variants of the recipe.
-   */
+  variants?: ForceIndexVariants<T, SlotRecord<S, SystemStyleObject>>; // This is the main Change that limits inference.
   defaultVariants?: RecipeSelection<T>;
-  /**
-   * The styles to apply when a combination of variants is selected.
-   */
   compoundVariants?: Pretty<SlotRecipeCompoundVariant<S, RecipeCompoundSelection<T>>>[];
 }
 
