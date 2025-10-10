@@ -5,15 +5,16 @@ import {
   RecipeCompoundSelection,
   RecipeCompoundVariant,
   RecipeConfigMeta,
+  RecipeVariantRecord,
   SystemStyleObject
 } from './styled-system/types';
 // Core
-export interface RecipeDefinition<T> {
+export interface RecipeDefinition<T = RecipeVariantRecord> {
   base?: SystemStyleObject;
   deprecated?: boolean | string;
   variants?: ForceIndexVariants<T, SystemStyleObject>; // This is the main change that limits inference.
-  defaultVariants?: RecipeSelection<T>;
-  compoundVariants?: Pretty<RecipeCompoundVariant<RecipeCompoundSelection<T>>>[];
+  defaultVariants?: RecipeSelection<NoInfer<T>>;
+  compoundVariants?: Pretty<RecipeCompoundVariant<RecipeCompoundSelection<NoInfer<T>>>>[];
 }
 // I removed this entirely to be consistent with sva. However, the "extends" works fine here. The only exception is that Making this `Record<any, Record<any,SystemStyleObject>> will cause inference to fail at RecipeCreatorFn and default to RecipeVariantRecord
 // export type RecipeVariantRecord = Record<any, Record<any, unknown>>;

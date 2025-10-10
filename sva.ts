@@ -22,8 +22,8 @@ export interface SlotRecipeDefinition<
   slots: S[] | Readonly<S[]>;
   base?: SlotRecord<S, SystemStyleObject>;
   variants?: ForceIndexVariants<T, SlotRecord<S, SystemStyleObject>>; // This is the main Change that limits inference.
-  defaultVariants?: RecipeSelection<T>;
-  compoundVariants?: Pretty<SlotRecipeCompoundVariant<S, RecipeCompoundSelection<T>>>[];
+  defaultVariants?: RecipeSelection<NoInfer<T>>;
+  compoundVariants?: Pretty<SlotRecipeCompoundVariant<S, RecipeCompoundSelection<NoInfer<T>>>>[];
 }
 
 export type SlotRecipeCreatorFn = <S extends string, T>(
